@@ -1,0 +1,38 @@
+ALGORITHM palindrome
+VAR
+   word: STRING;
+
+BEGIN
+  Write(IsPalindrome(word));
+END
+
+FUNCTION IsPalindrome(word: string) : boolean
+VAR
+    length: integer;
+BEGIN
+    length = word.length;
+
+    IF length <= 1
+        RETURN TRUE;
+    END IF
+
+    IF word[0] != word[length - 1]
+        RETURN FALSE;
+    END IF
+
+    RETURN IsPalindrome(SousChaine(word, 2, length - 2));
+END
+
+
+FUNCTION SousChaine(word: string, start: integer, length: integer) : string
+VAR
+    result: string;
+    i: integer;
+BEGIN
+    result := "";
+    FOR i FROM 1 TO length DO
+        result := result + word[i];
+    END FOR
+
+    RETURN result;
+END
